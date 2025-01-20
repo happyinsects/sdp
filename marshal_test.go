@@ -62,6 +62,7 @@ func TestMarshalCanonical(t *testing.T) {
 		}(),
 		EmailAddress: &(&struct{ x EmailAddress }{"j.doe@example.com (Jane Doe)"}).x,
 		PhoneNumber:  &(&struct{ x PhoneNumber }{"+1 617 555-6011"}).x,
+		Y:            &(&struct{ x YSSRC }{"123456789"}).x,
 		ConnectionInformation: &ConnectionInformation{
 			NetworkType: "IN",
 			AddressType: "IP4",

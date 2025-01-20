@@ -58,6 +58,8 @@ const (
 	PhoneNumberSDP = BaseSDP +
 		"p=+1 617 555-6011\r\n" +
 		"t=3034423619 3042462419\r\n"
+	YSDP = BaseSDP +
+		"y=123456789\r\n"
 
 	SessionConnectionInformationSDP = BaseSDP +
 		"c=IN IP4 224.2.17.12/127\r\n" +
@@ -238,6 +240,10 @@ func TestRoundTrip(t *testing.T) {
 		{
 			Name: "PhoneNumber",
 			SDP:  PhoneNumberSDP,
+		},
+		{
+			Name: "Y",
+			SDP:  YSDP,
 		},
 		{
 			Name:   "RepeatTimesSDPExtraCRLF",

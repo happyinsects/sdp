@@ -67,6 +67,10 @@ type SessionDescription struct {
 
 	// https://tools.ietf.org/html/rfc4566#section-5.14
 	MediaDescriptions []*MediaDescription
+
+	// y=<SSRC>
+	//chnina gb/t 28181
+	Y *YSSRC
 }
 
 // Attribute returns the value of an attribute and if it exists.
@@ -179,6 +183,20 @@ func (p PhoneNumber) marshalInto(b []byte) []byte {
 
 func (p PhoneNumber) marshalSize() (size int) {
 	return len(p)
+}
+
+type YSSRC string
+
+func (y YSSRC) String() string {
+	return string(y)
+}
+
+func (y YSSRC) marshalInto(b []byte) []byte {
+	return append(b, y...)
+}
+
+func (y YSSRC) marshalSize() (size int) {
+	return len(y)
 }
 
 // TimeZone defines the structured object for "z=" line which describes

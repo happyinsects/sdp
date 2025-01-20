@@ -187,6 +187,8 @@ func s4(l *lexer) (stateFn, error) {
 			return unmarshalSessionBandwidth
 		case 't':
 			return unmarshalTiming
+		case 'y':
+			return unmarshalYSSRC
 		}
 
 		return nil
@@ -217,6 +219,8 @@ func s6(l *lexer) (stateFn, error) {
 			return unmarshalSessionBandwidth
 		case 't':
 			return unmarshalTiming
+		case 'y':
+			return unmarshalYSSRC
 		}
 
 		return nil
@@ -238,6 +242,8 @@ func s7(l *lexer) (stateFn, error) {
 			return unmarshalSessionBandwidth
 		case 't':
 			return unmarshalTiming
+		case 'y':
+			return unmarshalYSSRC
 		}
 
 		return nil
@@ -293,6 +299,8 @@ func s10(l *lexer) (stateFn, error) {
 			return unmarshalSessionBandwidth
 		case 't':
 			return unmarshalTiming
+		case 'y':
+			return unmarshalYSSRC
 		}
 
 		return nil
@@ -545,6 +553,18 @@ func unmarshalPhone(l *lexer) (stateFn, error) {
 
 	phoneNumber := PhoneNumber(value)
 	l.desc.PhoneNumber = &phoneNumber
+
+	return s8, nil
+}
+
+func unmarshalYSSRC(l *lexer) (stateFn, error) {
+	value, err := l.readLine()
+	if err != nil {
+		return nil, err
+	}
+
+	ssrc := YSSRC(value)
+	l.desc.Y = &ssrc
 
 	return s8, nil
 }

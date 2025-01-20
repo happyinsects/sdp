@@ -61,6 +61,9 @@ func (s *SessionDescription) Marshal() ([]byte, error) { //nolint:cyclop
 	if s.PhoneNumber != nil {
 		marsh.addKeyValue("p=", s.PhoneNumber.marshalInto)
 	}
+	if s.Y != nil {
+		marsh.addKeyValue("y=", s.Y.marshalInto)
+	}
 
 	if s.ConnectionInformation != nil {
 		marsh.addKeyValue("c=", s.ConnectionInformation.marshalInto)
@@ -146,6 +149,9 @@ func (s *SessionDescription) MarshalSize() (marshalSize int) { //nolint:cyclop
 
 	if s.PhoneNumber != nil {
 		marshalSize += lineBaseSize + s.PhoneNumber.marshalSize()
+	}
+	if s.Y != nil {
+		marshalSize += lineBaseSize + s.Y.marshalSize()
 	}
 
 	if s.ConnectionInformation != nil {
